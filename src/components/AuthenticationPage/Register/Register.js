@@ -6,69 +6,74 @@ import "./Register.css"
 import { Navigate } from 'react-router-dom';
 import Loader from '../../Loader/Loader';
 
-const RegistrationForm = ({ isAuthenticated, setIsAuthenticated, setLoading, loading }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [subscriptionId, setSubscriptionId] = useState("");
-  const [clientId, setClientId] = useState("");
-  const [clientSecret, setClientSecret] = useState("");
-  const [tenantId, setTenantId] = useState("");
-  const [zone, setZone] = useState(""); // lowercase 'z' for consistency
-  const [resourceGroupName, setResourceGroupName] = useState("");
-  const [password, setPassword] = useState("");
+const Register = ({isAuthenticated,setisAuthenticated,setLoading,loading}) => {
+    const [name,setname]=useState("")
+    const [email,setemail]=useState("")
+    const [subscriptionid,setsubscriptionid]=useState("")
+    const [clientid,setclientid]=useState("")
+    const [client_secret,setclient_secret]=useState("")
+    const [tenantId,settenantId]=useState("")
+    const [Zone,setZone]=useState("")
+    const [resourcegroupname,setresourcegroupname]=useState("")
+    const [password,setpassword]=useState("")
 
-  const handleRegistrationSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      setLoading(true);
-      const { data } = await axios.post("https://dns-backend-magv.onrender.com/api/v1/users/register", {
-        name,
-        email,
-        subscriptionId,
-        clientId,
-        clientSecret,
-        tenantId,
-        zone, // lowercase 'z' for consistency
-        resourceGroupName,
-        password,
-      }, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      });
-      setIsAuthenticated(true);
-      setLoading(false);
-      toast.success(data.message);
-    } catch (error) {
-      setLoading(false);
-      toast.error("Invalid Input or Registration Failed");
+    const submitHandaler=async(e)=>{
+        e.preventDefault();
+        try {
+            setLoading(true);
+            const {data}=await axios.post("https://dns-management-system-backend-azure.onrender.com/api/v1/users/register",{
+                name,
+                email,
+                subscriptionid,
+                clientid,
+                client_secret,
+                tenantId,
+                Zone,
+                resourcegroupname,
+                password
+            },{
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                withCredentials:true,
+            })
+            setisAuthenticated(true);
+            setLoading(false)
+            console.log(isAuthenticated)
+            toast.success(data.message);
+        } catch (error) {
+            setLoading(false);
+            toast.error("Invalid Credentials");
+        }
+       
+
     }
-  };
-
-  if (loading) {
-    return <div className="App"><Loader /></div>; // Display loader while loading
-  }
-
-  if (isAuthenticated) return <Navigate to={"/"} />;
-
+    if (loading) {
+        return <div className="App"><Loader /></div>; 
+      }
+    if(isAuthenticated) return <Navigate to={"/"}/>
   return (
-    <div className="RegistrationContainer">
-      <h1>Create Your Account</h1>
-      <form onSubmit={handleRegistrationSubmit}>
-        <input type="text" value={name} id="name" placeholder="Enter your Name" onChange={(e) => setName(e.target.value)} required />
-        <input type="email" value={email} id="email" placeholder="Enter your Email" onChange={(e) => setEmail(e.target.value)} required />
-        <input type="text" value={subscriptionId} id="subscriptionId" placeholder="Enter your Azure Subscription ID" onChange={(e) => setSubscriptionId(e.target.value)} required />
-        <input type="text" value={clientId} id="clientId" placeholder="Enter your Azure Client ID" onChange={(e) => setClientId(e.target.value)} required />
-        <input type="text" value={clientSecret} id="clientSecret" placeholder="Enter your Azure Client Secret" onChange={(e) => setClientSecret(e.target.value)} required />
-        <input type="text" value={tenantId} id="tenantId" placeholder="Enter your Azure Tenant ID" onChange={(e) => setTenantId(e.target.value)} required />
-        <input type="text" value={zone} id="zone" placeholder="Enter your Azure Zone" onChange={(e) => setZone(e.target.value)} required />
-        <input type="text" value={resourceGroupName} id="resourceGroupName" placeholder="Enter your Azure Resource Group Name" onChange={(e) => setResourceGroupName(e.target.value)} required />
-        <input type="password" value={password} id="password" placeholder="Create Your Password" onChange={(e) => setPassword(e.target.value)} required />
-        <button>Register</button>
-      </form>
-    </div>
-  );
-};
+    <>
+ 
 
-export default RegistrationForm;
+    <div className="SigninContainer">
+    <h1>Register</h1>
+
+    <form onSubmit={submitHandaler}>
+      <input type="text" value={name} id="name" placeholder="Enter your Name"  onChange={(e)=>setname(e.target.value)} required />
+      <input type="email" value={email} id="email" placeholder="Enter your Email" onChange={(e)=>setemail(e.target.value)} required />
+      <input type="text" value={subscriptionid} id="subscriptionid" placeholder="Enter your Azure subscriptionid" onChange={(e)=>setsubscriptionid(e.target.value)} required/>
+      <input type="text" value={clientid} id="clientid" placeholder="Enter your Azure clientid" onChange={(e)=>setclientid(e.target.value)} required/>
+      <input type="text" value={client_secret} id="client_secret" placeholder="Enter your Azure client_secret" onChange={(e)=>setclient_secret(e.target.value)} required/>
+      <input type="text" value={tenantId} id="tenantId" placeholder="Enter your Azure tenantId" onChange={(e)=>settenantId(e.target.value)} required/>
+      <input type="text" value={Zone} id="tenantId" placeholder="Enter your Azure tenantId" onChange={(e)=>setZone(e.target.value)} required/>
+      <input type="text" value={resourcegroupname} id="tenantId" placeholder="Enter your Azure tenantId" onChange={(e)=>setresourcegroupname(e.target.value)} required/>
+      <input type="password" value={password} id="password" placeholder="Create Your Password" onChange={(e)=>setpassword(e.target.value)} required />
+      <button>Register</button>
+    </form>
+  </div>
+  </>
+  )
+}
+
+export default Register
