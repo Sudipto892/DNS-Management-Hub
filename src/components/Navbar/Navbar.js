@@ -20,7 +20,7 @@ const Navbar = ({isAuthenticated,setisAuthenticated}) => {
   return (
     <div className='Navbar'>
       <div className="logo">
-        <h1>DNS MANAGER</h1>
+        <h1>DNS MANAGEMENT SYSTEM</h1>
       </div>
 
       <div className="Authbox">
