@@ -17,7 +17,7 @@ function App() {
   const [authToken, setAuthToken] = useState('');
 
   useEffect(() => {
-    axios.get("https://dns-management-system-backend-azure.onrender.com/api/v1/users/me", {
+    axios.get("https://dns-backend-magv.onrender.com/api/v1/users/me", {
       withCredentials: true,
     }).then(res => {
       setLoading(false); 

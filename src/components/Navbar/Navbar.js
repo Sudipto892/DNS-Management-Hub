@@ -10,7 +10,7 @@ const Navbar = ({ isLoggedIn, handleLogout }) => {
   
   const performLogout = async () => { 
     try {
-      await axios.delete("https://dns-management-system-backend-azure.onrender.com/api/v1/users/logout");
+      await axios.delete("https://dns-backend-magv.onrender.com/api/v1/users/logout");
       isLoggedIn(false); 
       toast.success("Logout Successful");
     } catch (error) {
