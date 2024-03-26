@@ -2,13 +2,13 @@
     display: flex; 
     justify-content: space-between; 
     align-items: center;
-    padding: 10px 20px;
+    padding: 5px 10px;
     background-color: #293846; 
-    color: #fff; 
+    color: #ffffff; 
   }
   
   .logo {
-    flex: 1; 
+    flex: 5; 
   }
   
   .logo h1 {
@@ -23,7 +23,7 @@
   }
   
   .Authbox button {
-    padding: 8px 15px;
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;

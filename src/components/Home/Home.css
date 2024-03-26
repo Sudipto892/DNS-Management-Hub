@@ -1,49 +1,53 @@
 .search {
-  display: flex; /* Arrange elements horizontally */
-  justify-content: space-between; /* Distribute elements evenly */
-  align-items: center;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1vmax;
 }
 
 .search input {
+  margin-right: 10px;
   padding: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  flex: 1; /* Make input element flexible to fill available space */
 }
 
 .search button {
   padding: 8px 15px;
-  background-color: #293846; /* Dark blue */
+  background-color: #293846;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
+.search button:first-child {
+  margin-right: 10px;
+}
+
 .add-update-delete {
-  display: flex; /* Arrange elements horizontally */
-  justify-content: space-between; /* Distribute elements evenly */
+  display: flex;
+  justify-content: center;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.add-update-delete select,
 .add-update-delete input {
+  margin: 0 10px;
   padding: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  flex: 1; /* Make select and input elements flexible */
 }
 
 .add-update-delete button {
   padding: 8px 15px;
-  background-color: #293846; /* Dark blue */
+  background-color: #293846;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-right: 10px; /* Add margin to the right of the Add Record button */
+  margin: 5px;
 }
 
 .container {
@@ -59,7 +63,7 @@ table {
 table th,
 table td {
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
 }
 
 table th {
