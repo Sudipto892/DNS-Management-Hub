@@ -113,7 +113,7 @@ const Home = ({ User, Authtoken,setLoading }) => {
         <button onClick={handleDeleteRecord}>Delete Record</button>
       </div>
       <div className="container">
-        <h1>DNS TABLE</h1>
+        <h3>DNS TABLE</h3>
         <table>
           <thead>
             <tr>
