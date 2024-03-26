@@ -66,8 +66,8 @@ const Register = ({isAuthenticated,setisAuthenticated,setLoading,loading}) => {
       <input type="text" value={clientid} id="clientid" placeholder="Enter your Azure clientid" onChange={(e)=>setclientid(e.target.value)} required/>
       <input type="text" value={client_secret} id="client_secret" placeholder="Enter your Azure client_secret" onChange={(e)=>setclient_secret(e.target.value)} required/>
       <input type="text" value={tenantId} id="tenantId" placeholder="Enter your Azure tenantId" onChange={(e)=>settenantId(e.target.value)} required/>
-      <input type="text" value={Zone} id="tenantId" placeholder="Enter your Azure tenantId" onChange={(e)=>setZone(e.target.value)} required/>
-      <input type="text" value={resourcegroupname} id="tenantId" placeholder="Enter your Azure tenantId" onChange={(e)=>setresourcegroupname(e.target.value)} required/>
+      <input type="text" value={Zone} id="tenantId" placeholder="Enter your Azure Zone" onChange={(e)=>setZone(e.target.value)} required/>
+      <input type="text" value={resourcegroupname} id="tenantId" placeholder="Enter your resource group name" onChange={(e)=>setresourcegroupname(e.target.value)} required/>
       <input type="password" value={password} id="password" placeholder="Create Your Password" onChange={(e)=>setpassword(e.target.value)} required />
       <button>Register</button>
     </form>
