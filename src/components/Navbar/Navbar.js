@@ -6,12 +6,12 @@ import "./Navbar.css"
 import axios from 'axios'
 
 
-const Navbar = ({ isLoggedIn, handleLogout }) => {
+const Navbar = ({isAuthenticated, setisAuthenticated }) => {
   
   const performLogout = async () => { 
     try {
       await axios.delete("https://dns-backend-magv.onrender.com/api/v1/users/logout");
-      isLoggedIn(false); 
+      setisAuthenticated(false); 
       toast.success("Logout Successful");
     } catch (error) {
       toast.error("Invalid Credentials");
@@ -26,7 +26,7 @@ const Navbar = ({ isLoggedIn, handleLogout }) => {
 
       <div className="Authbox">
         {
-          isLoggedIn ?
+          isAuthenticated ?
             <button id="Logout" onClick={performLogout}>Logout</button>
             :
             <div>
