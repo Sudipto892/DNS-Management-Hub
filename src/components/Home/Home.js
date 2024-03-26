@@ -1,20 +1,21 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import "./Home.css";
+import "./Home.css"
 import React, { useEffect, useState } from 'react';
 
-const Home = ({ User, Authtoken, setLoading }) => {
-  const [dnsData, setDnsData] = useState([]);
+
+const Home = ({ User, Authtoken,setLoading }) => {
+  const [dnsdata, setdnsdata] = useState([]);
   const [recordType, setRecordType] = useState('');
   const [recordName, setRecordName] = useState('');
-  const [searchTerm, setSearchTerm] = useState(''); 
+  const [searchQuery, setSearchQuery] = useState('');
 
-  useEffect(() => {
-    fetchDnsRecords();
-  }, []);
+  const handleRefresh = () => {
+    window.location.reload();
+  }
 
-  const fetchDnsRecords = async () => {
+  const handleSearch = async () => {
     try {
       const URL = `https://management.azure.com/subscriptions/${User.subscriptionid}/resourceGroups/${User.resourcegroupname}/providers/Microsoft.Network/dnsZones/${User.Zone}/all?api-version=2018-05-01`;
       const { data } = await axios.get(URL, {
@@ -23,7 +24,7 @@ const Home = ({ User, Authtoken, setLoading }) => {
           Authorization: Authtoken,
         },
       });
-      setDnsData(data.value);
+      setdnsdata(data.value);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -32,15 +33,16 @@ const Home = ({ User, Authtoken, setLoading }) => {
   const handleAddRecord = async () => {
     try {
       const URL = `https://management.azure.com/subscriptions/${User.subscriptionid}/resourceGroups/${User.resourcegroupname}/providers/Microsoft.Network/dnsZones/${User.Zone}/${recordType}/${recordName}?api-version=2018-05-01`;
+      const r=`${recordName}Records`
       const requestBody = {
         properties: {
           metadata: {
             key1: "value1",
           },
           TTL: 3600,
-          records: [
+          r: [
             {
-              ipv4Address: "127.0.0.1", 
+              ipv4Address: "127.0.0.1",
             },
           ],
         },
@@ -52,7 +54,6 @@ const Home = ({ User, Authtoken, setLoading }) => {
         },
       });
       toast.success("Record added successfully");
-      fetchDnsRecords(); 
     } catch (error) {
       toast.error("Error adding record:");
     }
@@ -63,82 +64,73 @@ const Home = ({ User, Authtoken, setLoading }) => {
       const URL = `https://management.azure.com/subscriptions/${User.subscriptionid}/resourceGroups/${User.resourcegroupname}/providers/Microsoft.Network/dnsZones/${User.Zone}/${recordType}/${recordName}?api-version=2018-05-01`;
       await axios.delete(URL, {
         headers: {
-          "Content-Type": "application/json",
-          Authorization: Authtoken,
-        },
+            "Content-Type": "application/json",
+            Authorization: Authtoken,
+          }
       });
-      toast.success("Record Deleted Successfully");
-      fetchDnsRecords(); 
+      toast.success("Record Deleted Succesfully");
     } catch (error) {
-      toast.error("Error Deleting Record");
+        toast.error("Not Deleted");
     }
   };
 
-  const handleRefresh = () => {
-    fetchDnsRecords();
-  };
+  useEffect(() => {
+    handleSearch();
+  }, [dnsdata])
 
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const filteredRecords = dnsData.filter((record) =>
-    record.name.toLowerCase().includes(searchTerm.toLowerCase())
+  // Filter DNS records based on search query
+  const filteredDnsData = dnsdata.filter(record =>
+    record.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
-    <div className="container">
-      <div className="header">
-        <h2>DNS Management Hub</h2>
-        <div className="search-bar">
+    <>
+      <div className="search">
+        <div className='searchfield'>
+          <button onClick={handleRefresh}>Fetch All Records</button>
           <input
             type="text"
             placeholder="Search DNS Records"
-            value={searchTerm}
-            onChange={handleSearch}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <button onClick={handleRefresh}>Retrieve All DNS Records</button>
         </div>
       </div>
-      <div className="record-management">
-        <div className="record-inputs">
-          <input
-            type="text"
-            placeholder="Record Type"
-            value={recordType}
-            onChange={(e) => setRecordType(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Record Name"
-            value={recordName}
-            onChange={(e) => setRecordName(e.target.value)}
-          />
-        </div>
-        <div className="record-buttons">
-          <button onClick={handleAddRecord}>Add Record</button>
-          <button onClick={handleDeleteRecord}>Delete Record</button>
-        </div>
+      <div className="add-update-delete">
+        <input
+          type="text"
+          placeholder="Record Type"
+          value={recordType}
+          onChange={(e) => setRecordType(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Record Name"
+          value={recordName}
+          onChange={(e) => setRecordName(e.target.value)}
+        />
+        <button onClick={handleAddRecord}>Add Record</button>
+        <button onClick={handleDeleteRecord}>Delete Record</button>
       </div>
-      <div className="record-list">
+      <div className="container">
         <table>
           <thead>
             <tr>
-              <th>DNS RECORDS</th>
+              <th>DNS RECORDS NAME</th>
               <th>DNS TYPE</th>
             </tr>
           </thead>
           <tbody>
-            {filteredRecords.map((record, index) => (
+            {filteredDnsData.map((th, index) => (
               <tr key={index}>
-                <td>{record.name}</td>
-                <td>{record.type}</td>
+                <td>{th.name}</td>
+                <td>{th.type}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-    </div>
+    </>
   );
 };
 
