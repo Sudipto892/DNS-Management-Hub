@@ -16,7 +16,7 @@ const Home = ({ User, Authtoken, setLoading }) => {
 
   const fetchDnsRecords = async () => {
     try {
-      const URL = `https://management.azure.com/subscriptions/<span class="math-inline">\{User\.subscriptionid\}/resourceGroups/</span>{User.resourcegroupname}/providers/Microsoft.Network/dnsZones/${User.Zone}/all?api-version=2018-05-01`;
+      const URL = `https://management.azure.com/subscriptions/${User.subscriptionid}/resourceGroups/${User.resourcegroupname}/providers/Microsoft.Network/dnsZones/${User.Zone}/all?api-version=2018-05-01`;
       const { data } = await axios.get(URL, {
         headers: {
           'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ const Home = ({ User, Authtoken, setLoading }) => {
 
   const handleAddRecord = async () => {
     try {
-      const URL = `https://management.azure.com/subscriptions/<span class="math-inline">\{User\.subscriptionid\}/resourceGroups/</span>{User.resourcegroupname}/providers/Microsoft.Network/dnsZones/<span class="math-inline">\{User\.Zone\}/</span>{recordType}/${recordName}?api-version=2018-05-01`;
+      const URL = `https://management.azure.com/subscriptions/${User.subscriptionid}/resourceGroups/${User.resourcegroupname}/providers/Microsoft.Network/dnsZones/${User.Zone}/${recordType}/${recordName}?api-version=2018-05-01`;
       const requestBody = {
         properties: {
           metadata: {
@@ -60,7 +60,7 @@ const Home = ({ User, Authtoken, setLoading }) => {
 
   const handleDeleteRecord = async () => {
     try {
-      const URL = `https://management.azure.com/subscriptions/<span class="math-inline">\{User\.subscriptionid\}/resourceGroups/</span>{User.resourcegroupname}/providers/Microsoft.Network/dnsZones/<span class="math-inline">\{User\.Zone\}/</span>{recordType}/${recordName}?api-version=2018-05-01`;
+      const URL = `https://management.azure.com/subscriptions/${User.subscriptionid}/resourceGroups/${User.resourcegroupname}/providers/Microsoft.Network/dnsZones/${User.Zone}/${recordType}/${recordName}?api-version=2018-05-01`;
       await axios.delete(URL, {
         headers: {
           "Content-Type": "application/json",
