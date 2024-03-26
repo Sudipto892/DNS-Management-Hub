@@ -87,7 +87,7 @@ const Home = ({ User, Authtoken,setLoading }) => {
     <>
       <div className="search">
         <div className='searchfield'>
-          <button onClick={handleRefresh}>Fetch All Records</button>
+          <button onClick={handleRefresh}>Retrieve All DNS Records</button>
           <input
             type="text"
             placeholder="Search DNS Records"
@@ -113,11 +113,12 @@ const Home = ({ User, Authtoken,setLoading }) => {
         <button onClick={handleDeleteRecord}>Delete Record</button>
       </div>
       <div className="container">
+        <h1>DNS TABLE</h1>
         <table>
           <thead>
             <tr>
-              <th>DNS RECORDS NAME</th>
-              <th>DNS TYPE</th>
+              <th>DNS RECORDS</th>
+              <th>TYPE</th>
             </tr>
           </thead>
           <tbody>
