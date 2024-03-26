@@ -14,7 +14,7 @@ const Login = ({isAuthenticated,setisAuthenticated,setLoading,loading}) => {
     e.preventDefault();
     try {
       setLoading(true);
-        const {data}=await axios.post("https://dns-management-system-backend-azure.onrender.com/api/v1/users/login",{
+        const {data}=await axios.post("https://dns-backend-magv.onrender.com/api/v1/users/login",{
           email,
           password
         },{

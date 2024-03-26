@@ -21,7 +21,7 @@ const Register = ({isAuthenticated,setisAuthenticated,setLoading,loading}) => {
         e.preventDefault();
         try {
             setLoading(true);
-            const {data}=await axios.post("https://dns-management-system-backend-azure.onrender.com/api/v1/users/register",{
+            const {data}=await axios.post("https://dns-backend-magv.onrender.com/api/v1/users/register",{
                 name,
                 email,
                 subscriptionid,
