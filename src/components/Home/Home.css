@@ -1,0 +1,75 @@
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  margin: 0;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input[type="text"] {
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-bar button {
+  padding: 8px 15px;
+  background-color: #293846;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.record-management {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.record-inputs input[type="text"] {
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.record-buttons button {
+  padding: 8px 15px;
+  background-color: #293846;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.record-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.record-list th,
+.record-list td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.record-list th {
+  background-color: #f2f2f2;
+}

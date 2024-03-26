@@ -1,0 +1,51 @@
+.RegistrationContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* Semi-transparent white background */
+    background-color: rgba(255, 255, 255, 0.8);  
+    width: 40%; /* Increased width */
+    height: 55vmax; /* Increased height */
+    margin: 50px auto; /* Increased margin */
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    /* Added border for better visibility */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Thin gray border */
+  }
+  
+  .RegistrationContainer h1 {
+    color: #293846; /* Dark blue from header text */
+    font-size: 24px; /* Increased font size */
+    margin-bottom: 20px; /* Added margin */
+  }
+  
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  form input {
+    margin: 10px; /* Adjusted margin */
+    width: 80%; /* Increased width */
+    padding: 10px; /* Increased padding */
+    border-radius: 5px; /* Reduced corner roundness */
+    border: 1px solid rgba(0, 0, 0, 0.2); /* Light gray border */
+    font-size: 16px; /* Increased font size */
+  }
+  
+  form button {
+    margin: 15px 0; /* Adjusted margin */
+    width: 80%; /* Increased width */
+    height: 40px; /* Increased height */
+    background-color: #293846; /* Dark blue from header text */
+    color: white;
+    border: none;
+    font-size: 18px; /* Increased font size */
+    border-radius: 5px; /* Reduced corner roundness */
+    cursor: pointer;
+  }
+  
